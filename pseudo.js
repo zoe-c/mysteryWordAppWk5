@@ -34,3 +34,23 @@
    //
    // ASK FOR PLAY AGAIN:
       // starts game if they respond positively
+
+
+
+
+
+// // NEEDS AND CONSIDERATIONS-----------------------------
+// SEP FILES:
+   // JS WORD RENDERING AND MANIP
+   // JS GLOBAL FUNCTIONS
+   // JS SESSIONS
+   // 
+// -sanitize input (not empty, is char, maxlength of rand word pulled = 10)
+// -render txt in input/guess-field in lowercase *(just for aesthetics)
+// -session storage/ everything about sessions
+// -guess count control
+// -modal for offering to play again at the end?
+//
+// -rendering everything ELSE and not hardcd cheat out of desp
+// -styles
+// -modularize/ organize file : I wanted to get it functioning before managing/ even considering f s

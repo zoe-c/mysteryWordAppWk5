@@ -10,18 +10,6 @@ const expressValidator = require('express-validator');
 const fs = require('fs');
 
 // const words = './models/words.js';
-
-
-// FUNCTION THIS OR SEP JS OR BOTH
-// generate a random word and store it in an array of sep. char strings
-
-// const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
-// var rand = Math.floor(Math.random() * words.length);
-// var randWord = words[rand];
-// var randWordArr = words[rand].split("");
-// console.log(randWordArr);
-
-// NEED A WAY TO LIMIT THE LENGTH OF THE WORD IF THE USER ONLY GETS 8 GUESSES...LIMIT WORD.LENGTH to 8 mx? to 10 mx?
 // -----------------------------------------------
 
 // Create app
@@ -61,22 +49,31 @@ app.post('/', function(req,res) {
    res.redirect('/play');
 });
 
+// Wrap this in a function and throw in SEP JS FILE
 const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
 var rand = Math.floor(Math.random() * words.length);
 var randWord = words[rand];
 var randWordArr = words[rand].split("");
 console.log(randWordArr);
 console.log(typeof randWordArr);
+
 app.get('/play', function (req,res) {
-   res.render('play', {randWordArr: randWordArr});
-   // // store this word in a session
+   // to render randWordArr ((array))
+   // UNCOMMENT AND RENDER ARR INSTEAD OF WORD
+   // res.render('play', {randWordArr: randWordArr});
+
+   // to render randWord ((arr: 1 string))
+   // for styling purposes only VVVVVVVVVV
+   res.render('play', {randWord: randWord});
+
+   // store this word in a session
 });
 
 
 app.post('/play', function (req,res) {
    // console.log(req.body.letter);
-   var letter = req.body.letter;
 
+   var letter = req.body.letter;
    for (var i = 0; i < randWordArr.length; i++) {
       if (randWordArr[i] === letter === true ) {
          var match = randWordArr[i];
@@ -87,7 +84,8 @@ app.post('/play', function (req,res) {
       }
    };
    //    // checking for if user entered a letter or not
-    // store in displayArray at the same index.... OR let it be stored in the cookies somehow
+         // store in displayArray at the same index.... OR let it be stored in the cookies
+         // somehow
    //    // getElementById('letter-graveyard').innerHTML(displayArray)
    //     req.checkBody('letter','You forgot to sumbit a letter! Guess again.').notEmpty();
    //    // validation

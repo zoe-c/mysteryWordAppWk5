@@ -2,59 +2,46 @@
 <html>
    <head>
       <meta charset="utf-8">
-      <link rel="stylesheet" src="styles.css">
+      <link rel="stylesheet" href="styles.css">
+      <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
       <title>MYSTERY WORD APP: Game</title>
    </head>
 
 
    <body>
-      <div id="body-wrap">
-         <div id="title-container">
-            <h2>Mystery Word</h2>
+      <div class="body-wrap">
+         <!-- <div id="title-container"> -->
+            <h2 id="play-mw">Mystery Word</h2>
+         <!-- </div> -->
+         <div id="count-wrapper">
+            <!-- <h3 id="guess-count">You have {{guessCount}} guesses left!</h3> -->
+            <h3 id="guess-count">You have zero _ _ _ _  up's left!</h3>
          </div>
-         <div id="guess-count-container">
-            <h3 id="guess-count">You have {{guessCount}} guesses left!</h3>
-         </div>
-
          <div id="rand-word">
-            {{randWordArr}}
-
+            <!-- {{randWordArr}} -->
+            {{randWord}}
             <!-- {{#randWordArr}}
             {{#match}}<p class="match"></p>{{/match}}
             {{/randWordArr}} -->
-
             <!--maybe like this?  -->
             <!-- {{#randWordArr}}
             {{letter}}<div class="letters">{{lett}}</div>{{letter}}
             {{/randWordArr}} -->
-
             <!-- have little divs rendered here for each correct letter?-->
          </div>
-
-         <div id="matchbox"></div>
-
-
-
-         <div class="form-container">
+         <div id="guess-form-container">
             <form method="post" action="/play" id="guess-form">
                <input type="text" name="letter" maxlength="1">
-               <button type="submit" value="submit">SUBMIT</button>
+               <button type="submit" value="submit" id="wild-guess">GUESS</button>
             </form>
          </div>
-
-
-
-
          <h3> Letters guessed: </h3>
-         <div class="letter-graveyard"></div>
+         <div id="letter-graveyard"></div>
          <!-- or -->
          <!-- <output name="letters-guessed" for="guess"></output> -->
-
             <!-- should this be an <output> for the form input? -->
             <!-- remember! can adjust innerHTML of a div!-->
 
-
-
-
+      </div>
    </body>
 </html>
