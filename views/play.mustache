@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" src="styles.css">
+      <title>MYSTERY WORD APP: Game</title>
+   </head>
+
+
+   <body>
+      <div id="body-wrap">
+         <div id="title-container">
+            <h2>Mystery Word</h2>
+         </div>
+         <div id="guess-count-container">
+            <h3 id="guess-count">You have {{guessCount}} guesses left!</h3>
+         </div>
+
+         <div id="rand-word">
+            <!-- {{randWordArr}} -->
+            <!--maybe like this?  -->
+
+            {{#randWordArr}}
+            <div class="letters">{{letter}}</div>
+            {{/randWordArr}}
+
+
+
+            <!-- {{#wordArr}}
+               {{#seen}}
+                  <span>{{letter}}</span>
+               {{/seen}}
+               {{^seen}}
+                  <span>_</span>
+               {{/seen}}
+            {{/wordArr}} -->
+            <!-- have little divs rendered here for each correct word -->
+            <!-- is there a way to have the borders of a div (bottom border) viewable, but the text content not rendered (letters stay hidden) until triggered by correct event?-->
+         </div>
+
+
+
+         <div class="form-container">
+            <form method="POST" action="/play" class="guess-form">
+               <input type="text" maxlength="1" id="letter">
+               <input type="submit" name="submit-button" value="GUESS">
+            </form>
+         </div>
+
+         <h3> Letters guessed: </h3>
+         <div class="letter-graveyard"></div>
+         <!-- or -->
+         <!-- <output name="letters-guessed" for="guess"></output> -->
+
+            <!-- should this be an <output> for the form input? -->
+            <!-- remember! can adjust innerHTML of a div! this is what you did for your calc project-->
+
+
+
+
+   </body>
+</html>
