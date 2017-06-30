@@ -17,24 +17,33 @@
          </div>
 
          <div id="rand-word">
-            <!-- {{randWordArr}} -->
-            <!--maybe like this?  -->
+            {{randWordArr}}
 
-            {{#randWordArr}}
-            <div class="letters">{{letter}}</div>
-            {{/randWordArr}}
+            <!-- {{#randWordArr}}
+            {{#match}}<p class="match"></p>{{/match}}
+            {{/randWordArr}} -->
+
+            <!--maybe like this?  -->
+            <!-- {{#randWordArr}}
+            {{letter}}<div class="letters">{{lett}}</div>{{letter}}
+            {{/randWordArr}} -->
 
             <!-- have little divs rendered here for each correct letter?-->
          </div>
 
+         <div id="matchbox"></div>
+
 
 
          <div class="form-container">
-            <form method="POST" action="/play" class="guess-form">
-               <input type="text" maxlength="1" id="letter">
-               <input type="submit" name="submit-button" value="GUESS">
+            <form method="post" action="/play" id="guess-form">
+               <input type="text" name="letter" maxlength="1">
+               <button type="submit" value="submit">SUBMIT</button>
             </form>
          </div>
+
+
+
 
          <h3> Letters guessed: </h3>
          <div class="letter-graveyard"></div>

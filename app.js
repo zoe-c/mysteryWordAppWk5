@@ -1,3 +1,4 @@
+'use strict'
 // Require
 const express = require('express');
 const session = require('express-session');
@@ -7,9 +8,21 @@ const parseurl = require('parseurl');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const fs = require('fs');
-const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+
 // const words = './models/words.js';
 
+
+// FUNCTION THIS OR SEP JS OR BOTH
+// generate a random word and store it in an array of sep. char strings
+
+// const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+// var rand = Math.floor(Math.random() * words.length);
+// var randWord = words[rand];
+// var randWordArr = words[rand].split("");
+// console.log(randWordArr);
+
+// NEED A WAY TO LIMIT THE LENGTH OF THE WORD IF THE USER ONLY GETS 8 GUESSES...LIMIT WORD.LENGTH to 8 mx? to 10 mx?
+// -----------------------------------------------
 
 // Create app
 const app = express();
@@ -48,65 +61,58 @@ app.post('/', function(req,res) {
    res.redirect('/play');
 });
 
+const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+var rand = Math.floor(Math.random() * words.length);
+var randWord = words[rand];
+var randWordArr = words[rand].split("");
+console.log(randWordArr);
+console.log(typeof randWordArr);
 app.get('/play', function (req,res) {
-   // generate a random word and store it in an array of sep. char strings
-   var rand = Math.floor(Math.random() * words.length);
-   // var randWord = words[rand];
-   var randWordArr = words[rand].split("");
-   console.log(randWordArr);
-   for (var i = 0; i < randWordArr.length; i++) {
-      if (letter === randWordArr[i] === true ) {
-       console.log(letter);
-       console.log(randWordArr[i]);
-       console.log(randWord.indexOf(randWord[i]));
-       console.log("there is a match");
-      };
-   };
-
-
-
-   // NEED A WAY TO LIMIT THE LENGTH OF THE WORD IF THE USER ONLY GETS 8 GUESSES...LIMIT WORD.LENGTH to 8 mx? to 10 mx?
-   // -----------------------------------------------
    res.render('play', {randWordArr: randWordArr});
-
-   // res.render('play', {
-   //    randWordArr: randWordArr,
-   //    letter: letter
-   // });
-   // // need to be able to store this word in a session
+   // // store this word in a session
 });
 
-// app.post('/play', function (req,res){
-//    // NEED TO DRAG THIS INTO A VALIDATION FUNCTION// SEP JS
-//    // checking for if user entered a letter or not
- // store in displayArray at the same index.... OR let it be stored in the cookies somehow
-//    // getElementById('letter-graveyard').innerHTML(displayArray)
-//     req.checkBody('letter','You forgot to sumbit a letter! Guess again.').notEmpty();
-//    // validation
-//    var errors = req.validationErrors();
-//      if (errors) {
-//       //make res.send a modal so that you can refresh by:   res.redirect('/play');
-//        res.send( 'You forgot to submit a letter! Guess again.');
-//     } else if {
-//       // INCORRECT GUESS
-//       //   let badLett  = {'letter': req.body.letter};
-//         res.render('play', {letter});
-//      } else {
-//       //   CORRECT GUESS
-//       //  let winLett =
-//
-//      }
-// });
+
+app.post('/play', function (req,res) {
+   // console.log(req.body.letter);
+   var letter = req.body.letter;
+
+   for (var i = 0; i < randWordArr.length; i++) {
+      if (randWordArr[i] === letter === true ) {
+         var match = randWordArr[i];
+      // //  console.log(letter);
+       console.log(match);
+       console.log(randWordArr.indexOf(randWordArr[i]));
+       console.log("there is a match");
+      }
+   };
+   //    // checking for if user entered a letter or not
+    // store in displayArray at the same index.... OR let it be stored in the cookies somehow
+   //    // getElementById('letter-graveyard').innerHTML(displayArray)
+   //     req.checkBody('letter','You forgot to sumbit a letter! Guess again.').notEmpty();
+   //    // validation
+   //    var errors = req.validationErrors();
+   //      if (errors) {
+   //       //make res.send a modal so that you can refresh by:   res.redirect('/play');
+   //        res.send( 'You forgot to submit a letter! Guess again.');
+   //     } else if {
+   //       // INCORRECT GUESS
+   //       //   let badLett  = {'letter': req.body.letter};
+   //         res.render('play', {letter});
+   //      } else {
+   //       //   CORRECT GUESS
+   //       //  let winLett =
+   //
+   //      }
+
+   res.redirect('/play');
+});
 //
 // ----------------------------------------------
-// app.get('/lame', function (req, res) {
-//   res.render('bye');
-// });
 
 app.post('/lame', function (req, res) {
    res.render('bye');
 })
-
 
 
 // Port
