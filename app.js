@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function(req,res) {
-   // code for saving this shit in a session.
+   // code for saving this in a session.
    // want to configure a session on submit : I'm game or  modal: BYE on submit: I'm lame
    res.redirect('/play');
 });
@@ -79,7 +79,7 @@ app.get('/play', function (req,res) {
 // app.post('/play', function (req,res){
 //    // NEED TO DRAG THIS INTO A VALIDATION FUNCTION// SEP JS
 //    // checking for if user entered a letter or not
-//    // ALSO: need to loop through word array and check IF letter guessed === words[i] >> store in displayArray at the same index.... OR let it be stored in the cookies somehow
+ // store in displayArray at the same index.... OR let it be stored in the cookies somehow
 //    // getElementById('letter-graveyard').innerHTML(displayArray)
 //     req.checkBody('letter','You forgot to sumbit a letter! Guess again.').notEmpty();
 //    // validation
